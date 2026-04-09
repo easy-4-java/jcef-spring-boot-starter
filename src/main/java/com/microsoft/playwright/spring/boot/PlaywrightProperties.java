@@ -1,0 +1,105 @@
+/*
+ * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package com.microsoft.playwright.spring.boot;
+
+import com.microsoft.playwright.BrowserType;
+import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.spring.boot.options.*;
+import com.microsoft.playwright.spring.boot.pool.BrowserContextPoolConfig;
+import com.microsoft.playwright.spring.boot.pool.BrowserPagePoolConfig;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import java.util.function.Function;
+
+/**
+ *
+ * @author ： <a href="https://github.com/hiwepy">hiwepy</a>
+ */
+@ConfigurationProperties(PlaywrightProperties.PREFIX)
+@Data
+public class PlaywrightProperties {
+
+	public static final String PREFIX = "playwright";
+	public static final String PLAYWRIGHT_DOWNLOAD_HOST = "https://npm.taobao.org/mirrors";
+	private String downloadHost = PLAYWRIGHT_DOWNLOAD_HOST;
+
+	/**
+	 *  Whether to isolate Browser session. Defaults to {@code false}.
+	 */
+	private boolean isolated = false;
+	/**
+	 * Browser type. Defaults to {@link BrowserTypeEnum#chromium chromium}.
+	 */
+	private BrowserTypeEnum browserType = BrowserTypeEnum.chromium;
+    /**
+     * Browser Page Pool Config
+     */
+    private BrowserPagePoolConfig browserPagePool = new BrowserPagePoolConfig();
+	/**
+	 * Browser Context Pool Config
+	 */
+	private BrowserContextPoolConfig browserContextPool = new BrowserContextPoolConfig();
+	/**
+	 * Connect Options
+	 */
+	private BrowserConnectOptions connectOptions = new BrowserConnectOptions();
+	/**
+	 * Launch Options
+	 */
+	private BrowserLaunchOptions launchOptions = new BrowserLaunchOptions();
+	/**
+	 * New Context Options
+	 */
+	private BrowserNewContextOptions newContextOptions = new BrowserNewContextOptions();
+	/**
+	 * New Page Options
+	 */
+	private BrowserNewPageOptions newPageOptions = new BrowserNewPageOptions();
+	/**
+	 * Page Navigate Options
+	 */
+	private PageNavigateOptions pageNavigateOptions = new PageNavigateOptions();
+	/**
+	 * Page Screenshot Options
+	 */
+	private PageScreenshotOptions pageScreenshotOptions = new PageScreenshotOptions();
+	/**
+	 * Page Element Screenshot Options
+	 */
+	private ElementScreenshotOptions elementScreenshotOptions = new ElementScreenshotOptions();
+	/**
+	 * Page Pdf Options
+	 */
+	private PagePdfOptions pagePdfOptions = new PagePdfOptions();
+
+	public enum BrowserTypeEnum {
+		chromium(Playwright::chromium),
+		firefox(Playwright::firefox),
+		webkit(Playwright::webkit);
+
+		Function<Playwright, BrowserType> function;
+		BrowserTypeEnum(Function<Playwright, BrowserType> function) {
+			this.function = function;
+		}
+
+		public BrowserType getBrowserType(Playwright playwright) {
+			return function.apply(playwright);
+		}
+
+	}
+
+}
