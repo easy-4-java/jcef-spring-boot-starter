@@ -319,6 +319,16 @@
                 </activation>
             <properties>
                 <additionalparam>-Xdoclint:none</additionalparam>
+                <commons-io.version>2.22.0</commons-io.version>
+                <javafx-swing.version>17.0.14</javafx-swing.version>
+                <javafx-web.version>17.0.14</javafx-web.version>
+                <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
+                <jcef-natives-macosx-arm64.version>jcef-99c2f7a+cef-127.3.1+g6cbb30e+chromium-127.0.6533.100</jcef-natives-macosx-arm64.version>
+                <jcefmaven.version>127.3.1</jcefmaven.version>
+                <jxbrowser-javafx.version>8.2.2</jxbrowser-javafx.version>
+                <jxbrowser-mac-arm.version>8.2.2</jxbrowser-mac-arm.version>
+                <jxbrowser-swing.version>8.2.2</jxbrowser-swing.version>
+                <slf4j.version>2.0.18</slf4j.version>
             </properties>
         </profile>
         <profile>
@@ -555,7 +565,59 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-        </dependencies>
+                <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.friwi</groupId>
+            <artifactId>jcefmaven</artifactId>
+            <version>${jcefmaven.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>me.friwi</groupId>
+            <artifactId>jcef-natives-macosx-arm64</artifactId>
+            <version>${jcef-natives-macosx-arm64.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>${javafx-swing.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>${javafx-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.teamdev.jxbrowser</groupId>
+            <artifactId>jxbrowser-mac-arm</artifactId>
+            <version>${jxbrowser-mac-arm.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.teamdev.jxbrowser</groupId>
+            <artifactId>jxbrowser-swing</artifactId>
+            <version>${jxbrowser-swing.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.teamdev.jxbrowser</groupId>
+            <artifactId>jxbrowser-javafx</artifactId>
+            <version>${jxbrowser-javafx.version}</version>
+        </dependency>
+</dependencies>
     </dependencyManagement>
 
     <dependencies>
@@ -573,7 +635,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
+            <version>${javax.servlet-api.version}</version>
             <optional>true</optional>
         </dependency>
 
@@ -581,14 +643,14 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.13</version>
+            <version>${slf4j.version}</version>
         </dependency>
         
         <!-- For Slf4j Simple -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>2.0.13</version>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -699,14 +761,14 @@
         <dependency>
             <groupId>me.friwi</groupId>
             <artifactId>jcefmaven</artifactId>
-            <version>127.3.1</version>
+            <version>${jcefmaven.version}</version>
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/me.friwi/jcef-natives-macosx-arm64 -->
         <dependency>
             <groupId>me.friwi</groupId>
             <artifactId>jcef-natives-macosx-arm64</artifactId>
-            <version>jcef-99c2f7a+cef-127.3.1+g6cbb30e+chromium-127.0.6533.100</version>
+            <version>${jcef-natives-macosx-arm64.version}</version>
         </dependency>
 
 
@@ -715,14 +777,14 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-swing</artifactId>
-            <version>17.0.14</version>
+            <version>${javafx-swing.version}</version>
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-web -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
-            <version>17.0.14</version>
+            <version>${javafx-web.version}</version>
         </dependency>
 
 
@@ -731,20 +793,20 @@
         <dependency>
             <groupId>com.teamdev.jxbrowser</groupId>
             <artifactId>jxbrowser-mac-arm</artifactId>
-            <version>8.2.2</version>
+            <version>${jxbrowser-mac-arm.version}</version>
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/com.teamdev.jxbrowser/jxbrowser-swing -->
         <dependency>
             <groupId>com.teamdev.jxbrowser</groupId>
             <artifactId>jxbrowser-swing</artifactId>
-            <version>8.2.2</version>
+            <version>${jxbrowser-swing.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.teamdev.jxbrowser/jxbrowser-javafx -->
         <dependency>
             <groupId>com.teamdev.jxbrowser</groupId>
             <artifactId>jxbrowser-javafx</artifactId>
-            <version>8.2.2</version>
+            <version>${jxbrowser-javafx.version}</version>
         </dependency>
             <!-- For JUnit Jupiter -->
             <dependency>
@@ -756,7 +818,7 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.11.0</version>
+            <version>${commons-io.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
