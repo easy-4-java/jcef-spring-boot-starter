@@ -14,6 +14,7 @@
     <description>Spring Boot Starter For Playwright</description>
     <version>4.0.x.20260630-SNAPSHOT</version>
     <name>${project.groupId}:${project.artifactId}</name>
+            <url>https://github.com/loong10k</url>
     <url>https://github.com/easy-4-java/${project.artifactId}</url>
     <packaging>jar</packaging>
 
@@ -449,7 +450,7 @@
         <spring-biz.version>1.1.5.RELEASE</spring-biz.version>
         <transmittable-thread-local.version>2.14.2</transmittable-thread-local.version>
         <thumbnailator.version>0.4.19</thumbnailator.version>
-        <maven.version>3.0</maven.version>
+        <maven.version>3.6.3</maven.version>
            <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-jar-plugin.version>3.4.2</maven-jar-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
