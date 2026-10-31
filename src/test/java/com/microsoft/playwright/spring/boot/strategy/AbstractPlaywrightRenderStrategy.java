@@ -25,11 +25,11 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
-import org.springframework.util.Base64Utils;
+import java.util.Base64;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StopWatch;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -104,7 +104,7 @@ public abstract class AbstractPlaywrightRenderStrategy<B extends WkhtmlRenderBO>
         try {
             // 1、执行参数校验
             if(StringUtils.hasText(renderBO.getParam())){
-                String param = new String(Base64Utils.decodeFromString(renderBO.getParam()), Charset.defaultCharset());
+                String param = new String(Base64.getDecoder().decode(renderBO.getParam()), Charset.defaultCharset());
                 JSONObject jsonObject = JSON.parseObject(param);
                 List<String> urls = jsonObject.getList(REPORT_URLS_PARAM_NAME, String.class);
                 if(CollectionUtils.isEmpty(urls)){

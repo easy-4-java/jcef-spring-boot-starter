@@ -6,6 +6,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.WaitUntilState;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import com.microsoft.playwright.spring.boot.util.NonNullPropertyMapper;
 import org.springframework.boot.context.properties.PropertyMapper;
 
 @Accessors(chain = true)
@@ -37,11 +38,11 @@ public class PageNavigateOptions {
     public WaitUntilState waitUntil = WaitUntilState.NETWORKIDLE;
 
     public Page.NavigateOptions toOptions(){
-        PropertyMapper map = PropertyMapper.get().alwaysApplyingWhenNonNull();
+        PropertyMapper map = NonNullPropertyMapper.get();
         Page.NavigateOptions options = new Page.NavigateOptions();
         map.from(this.getReferer()).whenHasText().to(options::setReferer);
-        map.from(this.getTimeout()).whenNonNull().to(options::setTimeout);
-        map.from(this.getWaitUntil()).whenNonNull().to(options::setWaitUntil);
+        map.from(this.getTimeout()).to(options::setTimeout);
+        map.from(this.getWaitUntil()).to(options::setWaitUntil);
         return options;
     };
 
