@@ -12,4 +12,7 @@ permissions:
 jobs:
   build:
     uses: easy-4-java/.github/.github/workflows/maven-starter-ci.yml@main
+    # This line uses POM model 4.1.0; select the reusable job's Maven 4 wrapper path.
+    with:
+      version-line: 4.1.x
     secrets: inherit
