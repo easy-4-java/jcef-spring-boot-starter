@@ -3,6 +3,7 @@ package com.microsoft.playwright.spring.boot.options;
 import com.microsoft.playwright.BrowserType;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import com.microsoft.playwright.spring.boot.util.NonNullPropertyMapper;
 import org.springframework.boot.context.properties.PropertyMapper;
 
 import java.util.Map;
@@ -26,11 +27,11 @@ public class BrowserConnectOptions {
     public Double timeout = 0.0;
 
     public BrowserType.ConnectOptions toOptions() {
-        PropertyMapper map = PropertyMapper.get().alwaysApplyingWhenNonNull();
+        PropertyMapper map = NonNullPropertyMapper.get();
         BrowserType.ConnectOptions options = new BrowserType.ConnectOptions();
-        map.from(this.getHeaders()).whenNonNull().to(options::setHeaders);
-        map.from(this.getSlowMo()).whenNonNull().to(options::setSlowMo);
-        map.from(this.getTimeout()).whenNonNull().to(options::setTimeout);
+        map.from(this.getHeaders()).to(options::setHeaders);
+        map.from(this.getSlowMo()).to(options::setSlowMo);
+        map.from(this.getTimeout()).to(options::setTimeout);
         return options;
     }
 

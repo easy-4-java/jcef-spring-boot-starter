@@ -15,7 +15,6 @@ import com.teamdev.jxbrowser.frame.Frame;
 import com.teamdev.jxbrowser.navigation.Navigation;
 import com.teamdev.jxbrowser.print.PdfPrinter;
 import com.teamdev.jxbrowser.print.PrintJob;
-import com.teamdev.jxbrowser.print.event.PrintCompleted;
 import com.teamdev.jxbrowser.ui.Size;
 import com.teamdev.jxbrowser.view.swing.BrowserView;
 import com.teamdev.jxbrowser.view.swing.graphics.BitmapImage;
@@ -53,10 +52,6 @@ public final class App {
             stopWatch.stop();
 
             stopWatch.start("JxBrowser 创建 Browser ");
-
-            engine.on(PrintCompleted.class, event -> {
-                System.out.println("Print completed");
-            });
 
             // 创建一个浏览器实例
             Browser browser = engine.newBrowser();

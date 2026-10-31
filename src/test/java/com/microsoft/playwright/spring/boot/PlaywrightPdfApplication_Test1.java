@@ -14,9 +14,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.util.Base64Utils;
+import java.util.Base64;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -84,7 +84,7 @@ public class PlaywrightPdfApplication_Test1 implements CommandLineRunner {
         renderBO.setQuality(100);
         renderBO.setCompress(false);
         renderBO.setPageSize("A4");
-        renderBO.setParam(Base64Utils.encodeToString(JSON.toJSONString(params).getBytes()));
+        renderBO.setParam(Base64.getEncoder().encodeToString(JSON.toJSONString(params).getBytes()));
         renderBO.setAsync(true);
         WkhtmlRenderResultVO resultBO = null;
         try {
